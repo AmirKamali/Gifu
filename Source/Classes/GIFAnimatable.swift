@@ -12,7 +12,7 @@ public protocol GIFAnimatable: class {
   var frame: CGRect { get set }
 
   /// Content mode used for resizing the frames.
-  var contentMode: UIViewContentMode { get set }
+    var contentMode: UIView.ContentMode { get set }
 }
 
 
@@ -183,7 +183,8 @@ extension GIFAnimatable {
   /// Updates the image with a new frame if necessary.
   public func updateImageIfNeeded() {
     if var imageContainer = self as? ImageContainer {
-      imageContainer.image = activeFrame ?? imageContainer.image
+      let item = activeFrame ?? imageContainer.image
+        imageContainer.image = item
     } else {
       layer.contents = activeFrame?.cgImage
     }
